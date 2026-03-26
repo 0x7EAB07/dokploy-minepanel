@@ -1,0 +1,19 @@
+[
+  {
+    "id": "minepanel",
+    "name": "Minepanel",
+    "version": "latest",
+    "description": "A modern Docker-based web panel for managing multiple Minecraft servers (Java & Bedrock). Single-image deployment.",
+    "logo": "minepanel.webp",
+    "links": {
+      "github": "https://github.com/Ketbome/minepanel",
+      "website": "https://minepanel.ketbome.com",
+      "docs": "https://minepanel.ketbome.com/installation"
+    },
+    "tags": [
+      "gaming",
+      "minecraft",
+      "server-management"
+    ]
+  }
+]
