@@ -9,12 +9,12 @@ default_language = "en"
 mounts = ["/var/run/docker.sock:/var/run/docker.sock"]
 
 [[config.domains]]
-serviceName = "minepanel"
+serviceName = "frontend"
 port = 3_000
 host = "${main_domain}"
 
 [[config.domains]]
-serviceName = "minepanel"
+serviceName = "backend"
 port = 8_091
 host = "api-${main_domain}"
 

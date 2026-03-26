@@ -1,7 +1,9 @@
 services:
-  minepanel:
-    image: ketbom/minepanel:latest
+  backend:
+    image: ketbom/minepanel-backend:latest
+    restart: unless-stopped
     environment:
+      - NODE_ENV=production
       - FRONTEND_URL=${FRONTEND_URL}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:-2d}
@@ -9,13 +11,19 @@ services:
       - CLIENT_USERNAME=${CLIENT_USERNAME}
       - ALLOW_INSECURE_AUTH_COOKIES=${ALLOW_INSECURE_AUTH_COOKIES:-true}
       - BASE_DIR=/app
-      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
-      - NEXT_PUBLIC_DEFAULT_LANGUAGE=${NEXT_PUBLIC_DEFAULT_LANGUAGE:-en}
     volumes:
       - minepanel-servers:/app/servers
       - minepanel-data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
+
+  frontend:
+    image: ketbom/minepanel-frontend:latest
     restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL}
+      - NEXT_PUBLIC_DEFAULT_LANGUAGE=${NEXT_PUBLIC_DEFAULT_LANGUAGE:-en}
+    depends_on:
+      - backend
 
 volumes:
   minepanel-servers:
